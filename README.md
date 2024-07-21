@@ -38,8 +38,8 @@ Copy
 2. Open your web browser and go to `http://localhost:8501`
 
 3. Log in using the default credentials:
-- Username: admin
-- Password: admin
+- Username:
+- Password: 
 
 4. Upload a PDF or image file and click "Analyze Document" to see the results.
 
