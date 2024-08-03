@@ -4,8 +4,16 @@ from azure.core.credentials import AzureKeyCredential
 from azure.ai.documentintelligence import DocumentIntelligenceClient
 from azure.ai.documentintelligence.models import ContentFormat
 
+from pdfminer.pdfparser import PDFParser
+from pdfminer.pdfdocument import PDFDocument
+
 # Load environment variables from .env file
 load_dotenv()
+
+def get_pdf_page_count(file):
+        parser = PDFParser(file)
+        document = PDFDocument(parser)
+        return len(document.catalog['Pages'].resolve()['Kids'])
 
 def analyze_document(file):
     endpoint = os.getenv("DOCUMENTINTELLIGENCE_ENDPOINT")

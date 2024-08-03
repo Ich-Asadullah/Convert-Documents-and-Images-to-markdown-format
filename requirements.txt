@@ -1,3 +1,7 @@
 streamlit
 azure-ai-documentintelligence
 python-dotenv
+openai
+Pillow
+pdfminer
+pymupdf
