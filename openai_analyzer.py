@@ -15,7 +15,7 @@ async def encode_image_to_base64(img):
 async def send_image_to_chat(client, image_base64):
     
     response = await client.chat.completions.create(
-        model="gpt-4o-mini",
+        model="gpt-4o",
         messages=[
             {"role": "system", "content": "You are a helpful assistant. Please process the image and return the content in Markdown format. If you are unable to find any text in image, just return 'N/A'."},
             {"role": "user", "content":[
@@ -66,7 +66,7 @@ async def process_pdf(pdf_file):
         total_inp_tokens += inp_tokens
         total_res_tokens += res_tokens
 
-    total_cost = estimate_cost(total_inp_tokens, 0.15/1000000) + estimate_cost(total_res_tokens, 0.60/1000000)
+    total_cost = estimate_cost(total_inp_tokens, 5/1000000) + estimate_cost(total_res_tokens, 15/1000000)
 
     return markdown_results, total_cost, total_inp_tokens, total_res_tokens
 
