@@ -62,10 +62,10 @@ async def process_pdf(pdf_file):
         async def process_image(image):
             img_base64 = await encode_image_to_base64(image)
             response = await send_image_to_chat(img_base64)
-            text_content = response['completion']
-            # Estimate tokens (Anthropic API doesn't return usage, so we estimate)
-            inp_tokens = response.usage.input_tokens
-            output_tokens = response.usage.output_tokens
+            text_content = response['content'][0]['text']
+            # Estimate tokens
+            inp_tokens = response['usage']['input_tokens']
+            output_tokens = response['usage']['output_tokens']
 
             return text_content, inp_tokens, output_tokens
 
@@ -86,10 +86,12 @@ async def process_image(image_file):
         image = await asyncio.get_event_loop().run_in_executor(None, lambda: Image.open(BytesIO(image_bytes)))
         img_base64 = await encode_image_to_base64(image)
         response = await send_image_to_chat(img_base64)
-        text_content = response.content[0].text
-        
-        inp_tokens = response.usage.input_tokens
-        output_tokens = response.usage.output_tokens
+        # print(response)
+        text_content = response['content'][0]['text']
+        # Estimate tokens
+        inp_tokens = response['usage']['input_tokens']
+        output_tokens = response['usage']['output_tokens']
+
         total_cost = estimate_cost(inp_tokens, output_tokens)
         return text_content, total_cost, inp_tokens, output_tokens
 
