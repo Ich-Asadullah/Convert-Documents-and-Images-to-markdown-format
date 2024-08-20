@@ -5,7 +5,7 @@ A Streamlit-based web application that uses Azure's Document Intelligence servic
 ## Features
 
 - Secure login system
-- File upload for PDF and image files (jpg, jpeg, png)
+- File upload for PDF or image files (jpg, jpeg, png)
 - Document analysis using Azure Document Intelligence
 - Results displayed in Markdown format
 
