@@ -31,7 +31,7 @@ async def process_file_openai(file, file_type):
     if file_type == "pdf":
         results, total_cost, inp_tokens, res_tokens = await process_pdf(file)
         st.markdown("\n".join(results))
-    else:  # image
+    else:  
         result, total_cost, inp_tokens, res_tokens = await process_image(file)
         st.markdown(result)
     st.write(f"Total cost: ${total_cost:.6f}")
